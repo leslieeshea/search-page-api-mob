@@ -9,9 +9,22 @@
 </head>
 <body>
     <header>
-        <h1>Movies Explorer</h1>
+        <h1>Movie Explorer</h1>
     </header>
     <main>
+        <section>
+            <form id="search">
+                <input type="text" name="search"> 
+                <button>Search</button>
+            </form>
+        </section>
+        <section>
+           <p>
+                <button id="previous-button">Previous</button>
+                Page <span id="current-page">1</span> of <span id="total-pages">100</span> 
+                <button id="next-button">Next</button>
+            </p>
+        </section>
         <ul id="movie-list">
             
         </ul>
