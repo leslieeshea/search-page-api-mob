@@ -49,3 +49,44 @@ test('write page to existing query', assert => {
     //assert
     assert.equal(query, expected);
 });
+
+function readFromQuery(query) {
+    const searchParams = new URLSearchParams(query);
+    const pageString = searchParams.get('page');
+    let page = 1;
+    if(pageString) {
+        page = parseInt(pageString);
+    }
+    const options = {
+        searchTerm: searchParams.get('searchTerm'),
+        page: page
+    };
+    return options;
+}
+
+test('reads options from query', assert => {
+    //arrange
+    const query = 'searchTerm=harry+potter&page=3';
+    const expected = {
+        searchTerm: 'harry potter',
+        page: 3
+    };
+    //act
+    const options = readFromQuery(query);
+    //assert
+    assert.deepEqual(options, expected);
+});
+
+test('default to page one when no page specified', assert => {
+    //arrange
+    const query = 'searchTerm=harry+potter';
+    const expected = {
+        searchTerm: 'harry potter',
+        page: 1
+    };
+    //act
+    const options = readFromQuery(query);
+
+    //assert
+    assert.deepEqual(options, expected);
+});
