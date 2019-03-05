@@ -1,3 +1,4 @@
+export default
 [
     {
         'vote_count': 10870,
