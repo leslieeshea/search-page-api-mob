@@ -1,3 +1,4 @@
+//setting query with user's search term and sets page to 1
 export function writeSearchToQuery(existingQuery, searchTerm) {
     const searchParams = new URLSearchParams(existingQuery);
 
@@ -7,6 +8,7 @@ export function writeSearchToQuery(existingQuery, searchTerm) {
 
     return searchParams.toString();
 }
+//setting query with existingQuery(existing search term) and setting page number to current page
 export function writePageToQuery(existingQuery, page) {
     const searchParams = new URLSearchParams(existingQuery);
 
@@ -14,7 +16,7 @@ export function writePageToQuery(existingQuery, page) {
 
     return searchParams.toString();
 }
-
+//reading query and putting it in options object 
 export function readFromQuery(query) {
     const searchParams = new URLSearchParams(query);
     const pageString = searchParams.get('page');
