@@ -10,6 +10,9 @@ window.addEventListener('hashchange', () => {
     const queryOptions = readFromQuery(query);
     updateSearchInput(queryOptions.searchTerm);
     const url = makeSearchMovieUrl(queryOptions);
+    if(!url) {
+        return;
+    }
     fetch(url)
         .then(response => response.json())
         .then(movies => {
