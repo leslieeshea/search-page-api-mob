@@ -4,6 +4,8 @@ import { readFromQuery } from './query-component.js';
 import { updateSearchInput } from './search-component.js';
 import makeSearchMovieUrl from './make-search-movie-url.js';
 import { updatePagingInfo } from './paging-component.js';
+const prompt = document.getElementById('prompt');
+const moviesContainer = document.getElementById('movies-container');
 
 window.addEventListener('hashchange', loadQuery);
 
@@ -16,9 +18,15 @@ function loadQuery() {
     const url = makeSearchMovieUrl(queryOptions);
 
     if(!url) {
+        prompt.classList.remove('hidden');
+        moviesContainer.classList.add('hidden');
         return;
     }
-    
+    else {
+        prompt.classList.add('hidden');
+        moviesContainer.classList.remove('hidden');
+    }
+
     fetch(url)
         .then(response => response.json())
         .then(movies => {
