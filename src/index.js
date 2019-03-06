@@ -3,7 +3,7 @@ import './search-component.js';
 import { readFromQuery } from './query-component.js';
 import { updateSearchInput } from './search-component.js';
 import makeSearchMovieUrl from './make-search-movie-url.js';
-import './paging-component.js';
+import { updatePagingInfo } from './paging-component.js';
 
 window.addEventListener('hashchange', () => {
     const query = window.location.hash.slice(1);
@@ -13,8 +13,12 @@ window.addEventListener('hashchange', () => {
     fetch(url)
         .then(response => response.json())
         .then(movies => {
-            console.log(movies);
             loadMovies(movies.results);
+            const pagingInfo = {
+                page: movies.page,
+                totalPages: movies.total_pages
+            };
+            updatePagingInfo(pagingInfo);
         })
         .catch(err => {
             console.error('fetch error:', err);
